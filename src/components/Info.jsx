@@ -11,7 +11,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
-export default function Info({ open, handleClose, config }) {
+export default function Info({ open, handleClose}) {
   return (
     <div>
       <Dialog
@@ -27,6 +27,23 @@ export default function Info({ open, handleClose, config }) {
               This tool made possible by:
             </Typography>
             <List>
+            <ListItem
+                button
+                onClick={() =>
+                  (window.location.href = "https://github.com/shesdayo")
+                }
+              >
+                <ListItemAvatar>
+                  <Avatar
+                    alt="Shes"
+                    src="https://avatars.githubusercontent.com/shesdayo"
+                  />
+                </ListItemAvatar>
+                <ListItemText
+                  primary="Shes"
+                  secondary="for modding the app"
+                />
+              </ListItem>
               <ListItem
                 button
                 onClick={() =>
@@ -41,49 +58,32 @@ export default function Info({ open, handleClose, config }) {
                 </ListItemAvatar>
                 <ListItemText
                   primary="Ayaka"
-                  secondary="for the original idea"
-                />
-              </ListItem>
-              <ListItem
-                button
-                onClick={() =>
-                  (window.location.href = "https://github.com/modder4869")
-                }
-              >
-                <ListItemAvatar>
-                  <Avatar
-                    alt="Modder4869"
-                    src="https://avatars.githubusercontent.com/modder4869"
-                  />
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Modder4869"
-                  secondary="for the help with the code"
+                  secondary="for the base app"
                 />
               </ListItem>
               <ListItem
                 button
                 onClick={() =>
                   (window.location.href =
-                    "https://www.reddit.com/r/ProjectSekai/comments/x1h4v1/after_an_ungodly_amount_of_time_i_finally_made/")
+                    "https://github.com/shesdayo")
                 }
               >
                 <ListItemAvatar>
                   <Avatar
-                    alt="u/SherenPlaysGames"
-                    src="https://styles.redditmedia.com/t5_mygft/styles/profileIcon_n1kman41j5891.jpg"
+                    alt="Shes"
+                    src="https://avatars.githubusercontent.com/shesdayo"
                   />
                 </ListItemAvatar>
                 <ListItemText
-                  primary="u/SherenPlaysGames"
-                  secondary="for the original stamps"
+                  primary="Shes"
+                  secondary="for the scaled up emotes"
                 />
               </ListItem>
               <ListItem
                 button
                 onClick={() =>
                   (window.location.href =
-                    "https://github.com/TheOriginalAyaka/sekai-stickers/graphs/contributors")
+                    "https://github.com/shesdayo/lxs-stickers/graphs/contributors")
                 }
               >
                 <ListItemAvatar>
@@ -94,7 +94,7 @@ export default function Info({ open, handleClose, config }) {
                 </ListItemAvatar>
                 <ListItemText
                   primary="Contributors"
-                  secondary="for the help with the code"
+                  secondary="for the hopes and dreams also code"
                 />
               </ListItem>
             </List>
@@ -106,7 +106,7 @@ export default function Info({ open, handleClose, config }) {
                 button
                 onClick={() =>
                   (window.location.href =
-                    "https://github.com/TheOriginalAyaka/sekai-stickers")
+                    "https://github.com/shesdayo/lxs-stickers")
                 }
               >
                 <ListItemAvatar>
@@ -118,36 +118,6 @@ export default function Info({ open, handleClose, config }) {
                 <ListItemText primary="GitHub" secondary="Source Code" />
               </ListItem>
             </List>
-            <Typography variant="h6" component="h3">
-              The discord bot:
-            </Typography>
-            <List>
-              <ListItem
-                button
-                onClick={() =>
-                  (window.location.href =
-                    "http://link.ayaka.one/stbot")
-                }
-              >
-                <ListItemAvatar>
-                  <Avatar
-                    alt="Discord"
-                    src="https://cdn.discordapp.com/embed/avatars/0.png"
-                  />
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Sekai Stickers"
-                  secondary="Add more fun to your server."
-                />
-              </ListItem>
-            </List>
-            <Typography variant="h6" component="h3">
-              Total stickers made using the app:
-              <br />
-              {config?.global
-                ? config?.global.toLocaleString() + " Sticker"
-                : "not available"}
-            </Typography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

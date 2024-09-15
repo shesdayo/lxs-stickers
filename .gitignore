@@ -7,6 +7,10 @@
 
 # testing
 /coverage
+/.vscode
+
+#backup
+/bak
 
 # production
 /build

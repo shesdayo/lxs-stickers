@@ -1,0 +1,17 @@
+file 'stick01.png'
+duration 0.3
+file 'stick02.png'
+duration 0.08
+file 'stick03.png'
+duration 0.08
+file 'stick04.png'
+duration 0.08
+file 'stick05.png'
+duration 0.08
+file 'stick06.png'
+duration 0.1
+file 'stick07.png'
+duration 0.08
+file 'stick08.png'
+duration 0.35
+file 'stick08.png'

@@ -1,4 +1,4 @@
-Note: This app is no longer maintained as I'm working on an upcoming app. Stay tuned for updates!
+Note: This app is based on app that not longer maintained.
 ---
 
 [![Contributors][contributors-shield]][contributors-url]
@@ -9,65 +9,53 @@ Note: This app is no longer maintained as I'm working on an upcoming app. Stay t
 
 <br />
 <p align="center">
-  <a href="https://github.com/TheOriginalAyaka/sekai-stickers">
-    <img src="https://cdn.discordapp.com/attachments/1045298870533509130/1069241800285499402/Emu_13_st.ayaka.one.png" alt="CSD Bot" width="200" height="200">
-  </a>
+  <h2 align="center"><b>Light x Shadow Stickers</b></h2>
 
-  <h2 align="center"><b>Project Sekai Stickers</b></h2>
-
-  <p align="center">Help is welcome, got some skill issues so dont judge me
-      <img src="https://cdn.discordapp.com/emojis/999338712255180921.webp?size=28&quality=lossless">
+  <p align="center">Help is welcome, this program is powered by hopes and dreams ww
+      <img src="https://cdn.discordapp.com/emojis/705822313639051335.webp?size=28&quality=lossless">
     <br />
     <br />
-    <a href="https://github.com/TheOriginalAyaka/sekai-stickers/issues">Report Bug</a>
+    <a href="https://github.com/shesdayo/lxs-stickers/issues">Report Bug</a>
     ·
-    <a href="https://github.com/TheOriginalAyaka/sekai-stickers/issues">Request Feature</a>
+    <a href="https://github.com/shesdayo/lxs-stickers/issues">Request Feature</a>
   </p>
 </p>
 
 <!-- ABOUT THE PROJECT -->
 
-## 🤖》Discord Bot
+## <img src="https://cdn.discordapp.com/emojis/726496548963221575.png" width="20px" height="20px"> 》Feature
 
-### Sekai Stickers is also a discord bot, you can invite it [here](http://link.ayaka.one/stbot)
-
-## <img src="https://cdn.discordapp.com/emojis/859424401186095114.png" width="20px" height="20px"> 》Description
-
-[![Readme Card](https://git-stats.ayaka.one/api/pin/?username=TheOriginalAyaka&repo=sekai-stickers&theme=tokyonight&show_owner=true&hide_border=true)](https://github.com/TheOriginalAyaka/sekai-stickers)
-
-## <img src="https://cdn.discordapp.com/emojis/852881450667081728.gif" width="20px" height="20px"> 》Feature
-
-- [x] Wonderhoy!
+- [x] something
 - [x] Download/Copy stickers
-- [x] Global stickers made counter
+- [ ] Global stickers made counter
 - [ ] Social share button
 
 ## ✨》Credits
 
-- Original stickers from [Reddit](https://www.reddit.com/r/ProjectSekai/comments/x1h4v1/after_an_ungodly_amount_of_time_i_finally_made/)
+- Original stickers from Shes's stash
 
-- Cropped images by [Modder4869](https://github.com/Modder4869)
+- Scaled up images by [Shesdayo](https://github.com/shesdayo)
 
-- Website by [TheOriginalAyaka](https://github.com/TheOriginalAyaka)
+- Website by [Shesdayo](https://github.com/shesdayo)
 
-## <img src="https://cdn.discordapp.com/emojis/1028680849195020308.png" width="25px" height="25px"> 》Screenshots
+## <img src="https://cdn.discordapp.com/emojis/731557388418678794.png" width="25px" height="25px"> 》Screenshots
 
 <br />
 <p align="center">
-  <img src="https://raw.githubusercontent.com/TheOriginalAyaka/sekai-stickers/main/public/screenshot.jpg">
+  <img src="https://raw.githubusercontent.com/shesdayo/lxs-stickers/main/public/screenshot.jpg">
 </p>
 
 ## 🔐 》License
 
-Distributed under the MIT License. See [`LICENSE`](https://github.com/TheOriginalAyaka/sekai-stickers/blob/main/LICENCE) for more information.
+Distributed under the MIT License. See [`LICENSE`](https://github.com/shesdayo/lxs-stickers/blob/main/LICENCE) for more information.
 
-[contributors-shield]: https://img.shields.io/github/contributors/TheOriginalAyaka/sekai-stickers.svg?style=for-the-badge
-[contributors-url]: https://github.com/TheOriginalAyaka/sekai-stickers/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/TheOriginalAyaka/sekai-stickers.svg?style=for-the-badge
-[forks-url]: https://github.com/TheOriginalAyaka/sekai-stickers/network/members
-[stars-shield]: https://img.shields.io/github/stars/TheOriginalAyaka/sekai-stickers.svg?style=for-the-badge
-[stars-url]: https://github.com/TheOriginalAyaka/sekai-stickers/stargazers
-[issues-shield]: https://img.shields.io/github/issues/TheOriginalAyaka/sekai-stickers.svg?style=for-the-badge
-[issues-url]: https://github.com/TheOriginalAyaka/sekai-stickers/issues
-[license-shield]: https://img.shields.io/github/license/TheOriginalAyaka/sekai-stickers.svg?style=for-the-badge
-[license-url]: https://github.com/TheOriginalAyaka/sekai-stickers/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/shesdayo/lxs-stickers.svg?style=for-the-badge
+[contributors-url]: https://github.com/shesdayo/lxs-stickers/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/shesdayo/lxs-stickers.svg?style=for-the-badge
+[forks-url]: https://github.com/shesdayo/lxs-stickers/network/members
+[stars-shield]: https://img.shields.io/github/stars/shesdayo/lxs-stickers.svg?style=for-the-badge
+[stars-url]: https://github.com/shesdayo/lxs-stickers/stargazers
+[issues-shield]: https://img.shields.io/github/issues/shesdayo/lxs-stickers.svg?style=for-the-badge
+[issues-url]: https://github.com/shesdayo/lxs-stickers/issues
+[license-shield]: https://img.shields.io/github/license/shesdayo/lxs-stickers.svg?style=for-the-badge
+[license-url]: https://github.com/shesdayo/lxs-stickers/blob/master/LICENSE
