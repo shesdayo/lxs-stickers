@@ -2,7 +2,7 @@ import "./App.css";
 import Canvas from "./components/Canvas";
 import { useState, useEffect, useRef } from "react";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
-import { fetchFile } from "@ffmpeg/util";
+import { toBlobURL, fetchFile } from "@ffmpeg/util";
 import characters from "./characters.json";
 import Slider from "@mui/material/Slider";
 import TextField from "@mui/material/TextField";
@@ -62,8 +62,7 @@ function App() {
   };
 
   const load = async () => {
-    // const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd";
-    const baseURL = "/dist/umd";
+    const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd";
     const ffmpeg = ffmpegRef.current;
     ffmpeg.on("log", ({ message }) => {
       messageRef.current.innerHTML = message;
@@ -72,8 +71,11 @@ function App() {
     // toBlobURL is used to bypass CORS issue, urls with the same
     // domain can be used directly.
     await ffmpeg.load({
-      coreURL: `${baseURL}/ffmpeg-core.js`,
-      wasmURL: `${baseURL}/ffmpeg-core.wasm`
+      coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, "text/javascript"),
+      wasmURL: await toBlobURL(
+        `${baseURL}/ffmpeg-core.wasm`,
+        "application/wasm"
+      ),
     });
     setFFmpegLoaded(true);
   };
@@ -828,7 +830,7 @@ End of gif reader
               : (
                   <>
                   <Button color="secondary" onClick={load}>
-                    <b>Convert to gif (~20mb)</b>  
+                    <b>Convert to gif (~30mb)</b>  
                   </Button>
                   </>
               )   
