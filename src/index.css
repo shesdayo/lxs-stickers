@@ -13,3 +13,11 @@ body {
   font-family: 'SSFangTangTi';
   src: local('SSFangTangTi'), url(./fonts/ShangShouFangTangTi.woff2) format('woff2');
 }
+
+canvas{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}

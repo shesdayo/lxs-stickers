@@ -11,7 +11,8 @@
 }
 
 .canvas {
-  height: 256px;
+  position: relative;
+  height: 296px;
   width: 296px;
   border: 1px solid #ddd;
 }
@@ -20,7 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 256px;
+  height: 296px;
 }
 
 .horizontal {
