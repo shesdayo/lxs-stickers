@@ -42,7 +42,6 @@ function App() {
   const messageRef = useRef(null)
   const [gifDownUrl, setGifDownUrl] = useState()
   const img = new Image();
-  // const ff = new FFmpeg();
 
   useEffect(() => {
     setText(characters[character].defaultText.text);
@@ -62,15 +61,12 @@ function App() {
   };
 
   const load = async () => {
-    // const baseURL = "https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd";
     const baseURL = "/dist/umd";
     const ffmpeg = ffmpegRef.current;
     ffmpeg.on("log", ({ message }) => {
       messageRef.current.innerHTML = message;
       console.log(message);
     });
-    // toBlobURL is used to bypass CORS issue, urls with the same
-    // domain can be used directly.
     await ffmpeg.load({
       coreURL: `${baseURL}/ffmpeg-core.js`,
       wasmURL: `${baseURL}/ffmpeg-core.wasm`
@@ -79,6 +75,7 @@ function App() {
   };
 
   const transToGif = async () => {
+    setGifDownUrl(false)
     const videoURL = img.src;
     const concatURL = "/img/" + characters[character].concat;
     var canvasText = document.getElementsByTagName("canvas")[1];
@@ -91,7 +88,7 @@ function App() {
     }
     await ffmpeg.exec(["-i", "input.gif", "-i", "input.png",
        "-filter_complex", "[1:v]scale=300:300[a];[0:v][a]overlay",
-        "-vsync", "0", "-y", "stick%02d.png"]);
+        "-fps_mode", "passthrough", "-y", "stick%02d.png"]);
     console.log(ffmpeg.listDir("/"));
     await ffmpeg.exec(["-i", "stick%02d.png", "-vf", "palettegen=reserve_transparent=1", "-y", "palette.png"]);
     if (characters[character].concat === ''){
@@ -99,7 +96,6 @@ function App() {
     }else{
       await ffmpeg.exec(["-f", "concat", "-i", "input.txt", "-i", "palette.png", "-lavfi", "paletteuse=alpha_threshold=128", "-gifflags", "-offsetting", "-y", "nice.gif"]);
     }
-    // await ffmpeg.exec(["-hide_banner", "-v", "warning", "-i", "stick%02d.png", "-y", "nice.gif"]);
     const data = await ffmpeg.readFile('nice.gif');
     let i = 1;
     let j = 0;
@@ -111,7 +107,6 @@ function App() {
           i = 0; 
         }
         text = `stick${j}${i}.png`;
-        // console.log(text);
         i++;
       }
       while (await ffmpeg.deleteFile(text));
@@ -828,7 +823,7 @@ End of gif reader
               : (
                   <>
                   <Button color="secondary" onClick={load}>
-                    <b>Convert to gif (~20mb)</b>  
+                    <b>Convert to gif</b>  
                   </Button>
                   </>
               )   
