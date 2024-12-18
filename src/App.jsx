@@ -42,7 +42,6 @@ function App() {
   const messageRef = useRef(null)
   const [gifDownUrl, setGifDownUrl] = useState()
   const img = new Image();
-  // const ff = new FFmpeg();
   const pako = require('pako');
 
   useEffect(() => {
@@ -72,23 +71,30 @@ function App() {
     wasmx = pako.inflate(rawd);
      
     let jsd = await toBlobURL(`${baseURL3}/ffmpeg-core.js`, "text/javascript");
-    let blobd = URL.createObjectURL(new Blob([wasmx]), { type: "application/wasm" });
+    let wasmd = URL.createObjectURL(new Blob([wasmx]), { type: "application/wasm" });
     
     ffmpeg.on("log", ({ message }) => {
-      messageRef.current.innerHTML = message;
-      console.log(message);
+      try{
+        messageRef.current.innerHTML = message;
+        console.log(message);          
+      }catch(err){
+        // console.log('messageRef is empty');
+      }     
     });
     // toBlobURL is used to bypass CORS issue, urls with the same
     // domain can be used directly.
     await ffmpeg.load({
       coreURL: `${jsd}`,
-      wasmURL: `${blobd}`
+      wasmURL: `${wasmd}`
     });
     setFFmpegLoaded(true);
-    URL.revokeObjectURL(blobd);
+    URL.revokeObjectURL(wasmd);
   };
 
   const transToGif = async () => {
+    if (gifDownUrl) {
+      await URL.revokeObjectURL(gifDownUrl);
+    }
     setGifDownUrl(false)
     const videoURL = img.src;
     const concatURL = "/img/" + characters[character].concat;
@@ -103,7 +109,7 @@ function App() {
     await ffmpeg.exec(["-i", "input.gif", "-i", "input.png",
        "-filter_complex", "[1:v]scale=300:300[a];[0:v][a]overlay",
         "-fps_mode", "passthrough", "-y", "stick%02d.png"]);
-    console.log(ffmpeg.listDir("/"));
+    // console.log(ffmpeg.listDir("/"));
     await ffmpeg.exec(["-i", "stick%02d.png", "-vf", "palettegen=reserve_transparent=1", "-y", "palette.png"]);
     if (characters[character].concat === ''){
       await ffmpeg.exec(["-framerate", "10", "-i", "stick%02d.png",  "-i", "palette.png", "-lavfi", "paletteuse=alpha_threshold=128", "-gifflags", "-offsetting",  "-y",  "nice.gif"]);
