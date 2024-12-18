@@ -2,7 +2,7 @@ import "./App.css";
 import Canvas from "./components/Canvas";
 import { useState, useEffect, useRef } from "react";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
-import { fetchFile } from "@ffmpeg/util";
+import { toBlobURL, fetchFile } from "@ffmpeg/util";
 import characters from "./characters.json";
 import Slider from "@mui/material/Slider";
 import TextField from "@mui/material/TextField";
@@ -42,6 +42,8 @@ function App() {
   const messageRef = useRef(null)
   const [gifDownUrl, setGifDownUrl] = useState()
   const img = new Image();
+  // const ff = new FFmpeg();
+  const pako = require('pako');
 
   useEffect(() => {
     setText(characters[character].defaultText.text);
@@ -61,17 +63,29 @@ function App() {
   };
 
   const load = async () => {
-    const baseURL = "/dist/umd";
+    const baseURL2 = "/dist/umd";
+    const baseURL3 = `${window.location.origin}${baseURL2}`;
     const ffmpeg = ffmpegRef.current;
+    const resd = await fetch('/dist/umd/ffmpeg');
+    let rawd = await resd.arrayBuffer();
+    let wasmx = rawd;
+    wasmx = pako.inflate(rawd);
+     
+    let jsd = await toBlobURL(`${baseURL3}/ffmpeg-core.js`, "text/javascript");
+    let blobd = URL.createObjectURL(new Blob([wasmx]), { type: "application/wasm" });
+    
     ffmpeg.on("log", ({ message }) => {
       messageRef.current.innerHTML = message;
       console.log(message);
     });
+    // toBlobURL is used to bypass CORS issue, urls with the same
+    // domain can be used directly.
     await ffmpeg.load({
-      coreURL: `${baseURL}/ffmpeg-core.js`,
-      wasmURL: `${baseURL}/ffmpeg-core.wasm`
+      coreURL: `${jsd}`,
+      wasmURL: `${blobd}`
     });
     setFFmpegLoaded(true);
+    URL.revokeObjectURL(blobd);
   };
 
   const transToGif = async () => {
@@ -96,6 +110,7 @@ function App() {
     }else{
       await ffmpeg.exec(["-f", "concat", "-i", "input.txt", "-i", "palette.png", "-lavfi", "paletteuse=alpha_threshold=128", "-gifflags", "-offsetting", "-y", "nice.gif"]);
     }
+    // await ffmpeg.exec(["-hide_banner", "-v", "warning", "-i", "stick%02d.png", "-y", "nice.gif"]);
     const data = await ffmpeg.readFile('nice.gif');
     let i = 1;
     let j = 0;
@@ -107,6 +122,7 @@ function App() {
           i = 0; 
         }
         text = `stick${j}${i}.png`;
+        // console.log(text);
         i++;
       }
       while (await ffmpeg.deleteFile(text));
