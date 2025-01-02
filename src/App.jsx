@@ -34,6 +34,7 @@ function App() {
   const [spaceSize, setSpaceSize] = useState(1);
   const [rotate, setRotate] = useState(characters[character].defaultText.r);
   const [curve, setCurve] = useState(false);
+  const [outline, setOutline] = useState(false); 
   const [loaded, setLoaded] = useState(false);
   const [ffmpegLoaded, setFFmpegLoaded] = useState(false);
   const [copying, setCopying] = useState(false);
@@ -158,13 +159,13 @@ function App() {
       ctx.translate(position.x, position.y);
       ctx.rotate(rotate / 10);
       ctx.textAlign = "center";
-      ctx.strokeStyle = "white";
+      outline ? ctx.strokeStyle = `rgb(51 51 51)` : ctx.strokeStyle = "white";
       ctx.fillStyle = characters[character].color;
       var lines = text.split("\n");
       if (curve) {
         for (let line of lines) {
           for (let i = 0; i < line.length; i++) {
-            ctx.rotate(angle / line.length / 2.5);
+            ctx.rotate(angle / line.length / (2.5 / (spaceSize/10)));
             ctx.save();
             ctx.translate(0, -1 * fontSize * 3.5);
             ctx.strokeText(line[i], 0, 0);
@@ -176,7 +177,7 @@ function App() {
         for (var i = 0, k = 0; i < lines.length; i++) {
           ctx.strokeText(lines[i], 0, k);
           ctx.fillText(lines[i], 0, k);
-          k += spaceSize;
+          k = k + spaceSize;
         }
         ctx.restore();
       }
@@ -730,7 +731,7 @@ End of gif reader
             <Canvas draw={downloadCanvas} />
           </div>
           <Slider
-            value={curve ? 296 - position.y + fontSize * 3 : 296 - position.y}
+            value={curve ? 296  + fontSize * 3 - position.y : 296 - position.y}
             onChange={(e, v) =>
               setPosition({
                 ...position,
@@ -762,8 +763,8 @@ End of gif reader
               <Slider
                 value={rotate}
                 onChange={(e, v) => setRotate(v)}
-                min={-10}
-                max={10}
+                min={-30}
+                max={30}
                 step={0.2}
                 track={false}
                 color="secondary"
@@ -785,12 +786,12 @@ End of gif reader
             </div>
             <div>
               <label>
-                <nobr>Spacing: </nobr>
+                <nobr>{curve ? "Spacing: " : "Line height: "} </nobr>
               </label>
               <Slider
                 value={spaceSize}
                 onChange={(e, v) => setSpaceSize(v)}
-                min={18}
+                min={10}
                 max={100}
                 step={1}
                 track={false}
@@ -798,10 +799,16 @@ End of gif reader
               />
             </div>
             <div>
-              <label>Curve (Beta): </label>
+              <label>Curve: </label>
               <Switch
                 checked={curve}
                 onChange={(e) => setCurve(e.target.checked)}
+                color="secondary"
+              />
+              <label>Stroke: </label>
+              <Switch
+                checked={outline}
+                onChange={(e) => setOutline(e.target.checked)}
                 color="secondary"
               />
             </div>
